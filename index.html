@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Real Time Emotions Analysis Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+      <div class="container">
+        <h1 class="title">AI Real Time Emotions Analysis Console</h1>
+      </div>
+    </header>
+    <main class="main">
+        <div class="container">
+          <div class="wrapper flex-row">
+            <div class="flex-row">
+              <div class="flex-col">
+                <div class="flex-row">
+                  <section class="section video">
+                    <h2 class="title">
+                      Facial Expressions
+                      <div class="stream">
+                        <video id="videoElement" autoplay playsinline></video>
+                      </div>
+                    </h2>
+                  </section>
+  
+                  <div class="flex-col">
+                    <section class="section audio">
+                      <h2 class="title">
+                        Voice Expressions
+                        <div class="stream">
+                          <canvas id="visualizer" width="323" height="235"></canvas>
+                        </div>
+                      </h2>
+                    </section>
+      
+                    <section class="section text">
+                      <h2 class="title">
+                        Text Expressions
+                        <ul class="chat">
+                          <li class="phrase">
+                            <strong class="speaker">Malcolm:</strong>
+                            Hi, Helen. I’ve been feeling a bit overwhelmed, to be honest. Work has been really stressful, and I feel like I can’t keep up with everything.
+                          </li>
+                          <li class="phrase">
+                            <strong class="speaker">HelenAI:</strong>
+                            I’m sorry to hear that you’re feeling this way. Can you tell me more about what’s been particularly overwhelming at work?
+                          </li>
+                          <li class="phrase">
+                            <strong class="speaker">Malcolm:</strong>
+                            It’s just the sheer volume of tasks. I have deadlines piling up, and my manager keeps adding more projects. I feel like I’m constantly behind and can’t catch up.
+                          </li>
+                          <li class="phrase">
+                            <strong class="speaker">HelenAI:</strong>
+                            That sounds incredibly stressful. When you feel
+                          </li>
+                        </ul>
+                      </h2>
+                    </section>
+                  </div>
+                </div>
+
+                <div class="flex-row">
+                  <section class="section indicators facial">
+                    <h2 class="title">
+                      Facial State Emotions (FSE)
+                    </h2>
+                    <ul class="result-list">
+                      <li class="result">
+                          <h3 class="name">Happy</h3>
+                          <div class="scale"><div class="progress" style="width: 10%;"></div></div>
+                      </li>
+                      <li class="result result--accent">
+                          <h3 class="name">Sad</h3>
+                          <div class="scale"><div class="progress" style="width: 80%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Surprised</h3>
+                          <div class="scale"><div class="progress" style="width: 15%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Angry</h3>
+                          <div class="scale"><div class="progress" style="width: 30%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Disgusted</h3>
+                          <div class="scale"><div class="progress" style="width: 5%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Feared</h3>
+                          <div class="scale"><div class="progress" style="width: 11%;"></div></div>
+                      </li>
+                      <li class="result result--accent">
+                          <h3 class="name">Neutral</h3>
+                          <div class="scale"><div class="progress" style="width: 42%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Attention</h3>
+                          <div class="scale"><div class="progress" style="width: 10%;"></div></div>
+                      </li>
+                    </ul>
+                  </section>
+    
+                  <section class="section indicators voice">
+                    <h2 class="title">
+                      Voice State Emotions (VSE)
+                    </h2>
+                    <ul class="result-list">
+                      <li class="result">
+                          <h3 class="name">Happy</h3>
+                          <div class="scale"><div class="progress" style="width: 10%;"></div></div>
+                      </li>
+                      <li class="result result--accent">
+                          <h3 class="name">Sad</h3>
+                          <div class="scale"><div class="progress" style="width: 80%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Surprised</h3>
+                          <div class="scale"><div class="progress" style="width: 15%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Angry</h3>
+                          <div class="scale"><div class="progress" style="width: 30%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Disgusted</h3>
+                          <div class="scale"><div class="progress" style="width: 5%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Feared</h3>
+                          <div class="scale"><div class="progress" style="width: 11%;"></div></div>
+                      </li>
+                      <li class="result result--accent">
+                          <h3 class="name">Neutral</h3>
+                          <div class="scale"><div class="progress" style="width: 42%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Attention</h3>
+                          <div class="scale"><div class="progress" style="width: 10%;"></div></div>
+                      </li>
+                    </ul>
+                  </section>
+    
+                  <section class="section indicators text">
+                    <h2 class="title">
+                      Text State Emotions (VSE)
+                    </h2>
+                    <ul class="result-list">
+                      <li class="result">
+                          <h3 class="name">Happy</h3>
+                          <div class="scale"><div class="progress" style="width: 10%;"></div></div>
+                      </li>
+                      <li class="result result--accent">
+                          <h3 class="name">Sad</h3>
+                          <div class="scale"><div class="progress" style="width: 80%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Surprised</h3>
+                          <div class="scale"><div class="progress" style="width: 15%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Angry</h3>
+                          <div class="scale"><div class="progress" style="width: 30%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Disgusted</h3>
+                          <div class="scale"><div class="progress" style="width: 5%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Feared</h3>
+                          <div class="scale"><div class="progress" style="width: 11%;"></div></div>
+                      </li>
+                      <li class="result result--accent">
+                          <h3 class="name">Neutral</h3>
+                          <div class="scale"><div class="progress" style="width: 42%;"></div></div>
+                      </li>
+                      <li class="result">
+                          <h3 class="name">Attention</h3>
+                          <div class="scale"><div class="progress" style="width: 10%;"></div></div>
+                      </li>
+                    </ul>
+                  </section>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-row">
+              <div class="flex-col">
+                <section class="section indicators state">
+                  <h2 class="title">
+                    State Emotions (SE) (mediana)
+                  </h2>
+                  <ul class="result-list">
+                    <li class="result">
+                        <h3 class="name">Happy</h3>
+                        <div class="scale"><div class="progress" style="width: 10%;"></div></div>
+                    </li>
+                    <li class="result result--accent">
+                        <h3 class="name">Sad</h3>
+                        <div class="scale"><div class="progress" style="width: 80%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Surprised</h3>
+                        <div class="scale"><div class="progress" style="width: 15%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Angry</h3>
+                        <div class="scale"><div class="progress" style="width: 30%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Disgusted</h3>
+                        <div class="scale"><div class="progress" style="width: 5%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Feared</h3>
+                        <div class="scale"><div class="progress" style="width: 11%;"></div></div>
+                    </li>
+                    <li class="result result--accent">
+                        <h3 class="name">Neutral</h3>
+                        <div class="scale"><div class="progress" style="width: 42%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Attention</h3>
+                        <div class="scale"><div class="progress" style="width: 10%;"></div></div>
+                    </li>
+                  </ul>
+                </section>
+  
+                <section class="section indicators trait">
+                  <h2 class="title">
+                    Trait Emotions (TE)
+                  </h2>
+                  <ul class="result-list">
+                    <li class="result">
+                        <h3 class="name">Neuroticism</h3>
+                        <div class="scale"><div class="progress" style="width: 85%;"></div></div>
+                    </li>
+                    <li class="result result--accent">
+                        <h3 class="name">Extraversion</h3>
+                        <div class="scale"><div class="progress" style="width: 20%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Openness to Experience</h3>
+                        <div class="scale"><div class="progress" style="width: 15%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Agreeableness</h3>
+                        <div class="scale"><div class="progress" style="width: 60%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Conscientiousness</h3>
+                        <div class="scale"><div class="progress" style="width: 5%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Emotional Stability</h3>
+                        <div class="scale"><div class="progress" style="width: 11%;"></div></div>
+                    </li>
+                    <li class="result result--accent">
+                        <h3 class="name">Self-Control</h3>
+                        <div class="scale"><div class="progress" style="width: 32%;"></div></div>
+                    </li>
+                  </ul>
+                </section>
+  
+                <section class="section indicators trait">
+                  <h2 class="title">
+                    Personality Profile (PP)
+                  </h2>
+                  <h3 class="sub">Protagonist <strong>ENFJ-A</strong></h3>
+                  <ul class="result-list">
+                    <li class="result">
+                        <h3 class="name">Openness</h3>
+                        <div class="scale"><div class="progress" style="width: 85%;"></div></div>
+                    </li>
+                    <li class="result result--accent">
+                        <h3 class="name">Conscientiousness</h3>
+                        <div class="scale"><div class="progress" style="width: 20%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Extraversion</h3>
+                        <div class="scale"><div class="progress" style="width: 15%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Agreeableness</h3>
+                        <div class="scale"><div class="progress" style="width: 60%;"></div></div>
+                    </li>
+                    <li class="result result--accent">
+                        <h3 class="name">Neuroticism</h3>
+                        <div class="scale"><div class="progress" style="width: 5%;"></div></div>
+                    </li>
+                  </ul>
+                </section>
+  
+                <section class="section indicators character">
+                  <h2 class="title">
+                    Character (CH)
+                  </h2>
+                  <h3 class="sub">Melancholic</h3>
+                  <ul class="result-list">
+                    <li class="result">
+                      honest
+                    </li>
+                    <li class="result">
+                      introverted
+                    </li>
+                    <li class="result">
+                      idealist
+                    </li>
+                    <li class="result">
+                        analytical
+                    </li>
+                    <li class="result">
+                      pessimist
+                    </li>
+                  </ul>
+                </section>
+              </div>
+
+              <div class="flex-col">
+                <section class="section correlation">
+                  <h2 class="title">Emotions & Traits Correlation</h2>
+                  <div class="visualization">
+                    <div class="top">
+                      <div class="corner">
+                        <div class="short">(SE)</div>
+                        State Emotions
+                      </div>
+                    </div>
+                    <div class="midle">
+                      <div class="left">
+                        <div class="corner">
+                          <div class="short">(TE)</div>
+                          Trait Emotions
+                        </div>
+                      </div>
+                      <div class="wrapper">
+                        <canvas id="canvasQuadrilateral" width="122" height="122"></canvas>
+                      </div>
+                      <div class="right">
+                        <div class="corner">
+                          <div class="short">(PP)</div>
+                          Personality Profile
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bottom">
+                      <div class="corner">
+                        <div class="short">(CH)</div>
+                        Character
+                      </div>
+                    </div>
+                    <div class="footer">
+                      <div class="text">Position: -79 mm / 16mm / 331 mm</p> 
+                      <div class="text">Orientation: -7° / -3° / -3°</div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="section therapist-core">
+                  <h2 class="title">Core Therapist AI Model (CTM)</h2>
+                  <h3 class="sub">Empathetic</h3>
+                </section>
+
+                <section class="section indicators therapist-state">
+                  <h2 class="title">Core Therapist AI Model (STM)</h2>
+                  <ul class="result-list">
+                    <li class="result result--accent">
+                        <h3 class="name">Openness</h3>
+                        <div class="scale"><div class="progress" style="width: 85%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Conscientiousness</h3>
+                        <div class="scale"><div class="progress" style="width: 20%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Extraversion</h3>
+                        <div class="scale"><div class="progress" style="width: 15%;"></div></div>
+                    </li>
+                    <li class="result result--accent">
+                        <h3 class="name">Agreeableness</h3>
+                        <div class="scale"><div class="progress" style="width: 60%;"></div></div>
+                    </li>
+                    <li class="result">
+                        <h3 class="name">Neuroticism</h3>
+                        <div class="scale"><div class="progress" style="width: 5%;"></div></div>
+                    </li>
+                  </ul>
+                  <article class="description">
+                    <p class="part">Core TherapistAI Model (CTM) reflects the patient's permanent personality and character traits. Based on detailed information about the patient, such as his personality profile, character traits and emotional traits, we select one of the main communication profiles.</p>
+                    <p class="part">State TherapistAI Models (STM) adapt to the patient's current emotional state (state emotions). These profiles are activated depending on the patient's current responses and may change during the session.</p>
+                  </article>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <small class="corp">© SensumAI.com</small>
+        <div class="logo">
+          <img src="/images/logo.png" alt="logo" width="150" height="35">
+        </div>
+      </div>
+    </footer>
+
+
+    <script>
+      async function startVideoStream() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  
+          const videoElement = document.getElementById('videoElement');
+          videoElement.srcObject = stream;
+        } catch (err) {
+          console.error('Error accessing camera: ', err);
+        }
+      }
+  
+      window.addEventListener('DOMContentLoaded', startVideoStream);
+    </script>
+
+    <script>
+      async function startVisualizer() {
+        const canvas = document.getElementById('visualizer');
+        const canvasCtx = canvas.getContext('2d');
+  
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          const source = audioContext.createMediaStreamSource(stream);
+          const analyser = audioContext.createAnalyser();
+  
+          analyser.fftSize = 2048;
+          const bufferLength = analyser.fftSize;
+          const dataArray = new Uint8Array(bufferLength);
+  
+          source.connect(analyser);
+  
+          function draw() {
+            requestAnimationFrame(draw);
+  
+            analyser.getByteTimeDomainData(dataArray);
+  
+            canvasCtx.fillStyle = 'white';
+            canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+  
+            canvasCtx.lineWidth = 2;
+            canvasCtx.strokeStyle = 'black';
+  
+            canvasCtx.beginPath();
+  
+            const sliceWidth = canvas.width * 1.0 / bufferLength;
+            let x = 0;
+  
+            for (let i = 0; i < bufferLength; i++) {
+              const v = dataArray[i] / 128.0;
+              const y = v * canvas.height / 2;
+  
+              if (i === 0) {
+                canvasCtx.moveTo(x, y);
+              } else {
+                canvasCtx.lineTo(x, y);
+              }
+  
+              x += sliceWidth;
+            }
+  
+            canvasCtx.lineTo(canvas.width, canvas.height / 2);
+            canvasCtx.stroke();
+          }
+  
+          draw();
+        } catch (err) {
+          console.error('Error accessing microphone: ', err);
+        }
+      }
+  
+      window.addEventListener('load', startVisualizer);
+    </script>
+
+    <script>
+      // Get the canvas element and its 2D rendering context
+      const canvas = document.getElementById('canvasQuadrilateral');
+      const ctx = canvas.getContext('2d');
+
+      // Function to draw a square vertex
+      function drawSquareVertex(x, y, size, color) {
+        ctx.fillStyle = color; // Встановлення кольору заливки
+        ctx.fillRect(x - size / 2, y - size / 2, size, size); // Малювання квадрата, центрованого у (x, y)
+      }
+
+      // Function to draw the quadrilateral with square vertices
+      function drawQuadrilateralWithSquares(x1, y1, x2, y2, x3, y3, x4, y4, color) {
+        ctx.strokeStyle = color; // Встановлення кольору обводки
+        ctx.lineWidth = 2; // Товщина лінії для малювання контуру чотирикутника
+        ctx.beginPath();
+        ctx.moveTo(x1, y1); // Переміщення до першої вершини
+        ctx.lineTo(x2, y2); // Малювання лінії до другої вершини
+        ctx.lineTo(x3, y3); // Малювання лінії до третьої вершини
+        ctx.lineTo(x4, y4); // Малювання лінії до четвертої вершини
+        ctx.closePath(); // Закриття шляху
+        ctx.stroke(); // Виконання обводки, щоб намалювати контур
+        
+        // Малювання вершин у вигляді квадратів з вказаним кольором
+        drawSquareVertex(x1, y1, 5, color); // Вершина 1
+        drawSquareVertex(x2, y2, 5, color); // Вершина 2
+        drawSquareVertex(x3, y3, 5, color); // Вершина 3
+        drawSquareVertex(x4, y4, 5, color); // Вершина 4
+      }
+
+      // Приклад малювання чотирикутника з вершинами у вигляді квадратів з кольором #D4411D
+      drawQuadrilateralWithSquares(30, 30, 100, 50, 110, 100, 40, 80, '#D4411D');
+    </script>
+</body>
+</html>
